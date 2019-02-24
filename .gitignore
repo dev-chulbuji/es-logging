@@ -3,3 +3,6 @@
 terraform.tfstate
 terraform.tfstate.*
 .idea
+
+node_modules
+logs/
