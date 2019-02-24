@@ -5,4 +5,4 @@ terraform.tfstate.*
 .idea
 
 node_modules
-logs/
+app/logs/*.log
