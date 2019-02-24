@@ -6,7 +6,7 @@ before_install:
 branches:
   only:
     - master
-#script: deployment/build.sh
+script: npm run test
 notifications:
   email:
     recipients:
