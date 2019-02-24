@@ -1,3 +1,3 @@
 #!/bin/sh
-(cd app
+(cd ../app
 npm run test)
