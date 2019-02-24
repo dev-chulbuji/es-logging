@@ -1,12 +1,12 @@
 language: node_js
 node_js:
   - "10.14"
-#before_install:
-#  - npm install -g yarn
+before_install:
+  - cd app
 branches:
   only:
     - master
-script: deployment/build.sh
+#script: deployment/build.sh
 notifications:
   email:
     recipients:
