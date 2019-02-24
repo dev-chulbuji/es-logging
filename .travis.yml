@@ -6,6 +6,7 @@ node_js:
 branches:
   only:
     - master
+script: deployment/build.sh
 notifications:
   email:
     recipients:
