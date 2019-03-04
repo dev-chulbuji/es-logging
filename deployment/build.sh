@@ -32,7 +32,7 @@ docker_image_build() {
 
   # (cd $APP_PATH; rm ./id_rsa)
   IMAGE_ID=$(docker images ${APP_NAME}:latest -q)
-  IMAGE_URL="${IAM_ID}.dkr.ecr.${SERVER_REGION}.amazonaws.com/${APP_NAME}"
+  IMAGE_URL="${}.dkr.ecr.${SERVER_REGION}.amazonaws.com/${APP_NAME}"
 
   (docker tag ${APP_NAME}:latest ${IMAGE_URL}:latest)
   (docker tag ${APP_NAME}:latest ${IMAGE_URL}:${IMAGE_ID})
@@ -42,6 +42,7 @@ docker_image_build() {
 }
 
 test() {
+  echo "#### run test code ####"
   (cd $APP_PATH && npm run test)
 }
 
