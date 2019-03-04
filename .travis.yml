@@ -2,13 +2,13 @@ language: node_js
 node_js:
   - "11.10"
 
-before_install:
-  - cd deployment
+# before_install:
+  # - cd deployment
 branches:
   only:
     - master
 
-script: ./build.sh test
+script: ./deployment/build.sh test
 
 # before_deploy:
   # - build -t app:latest .

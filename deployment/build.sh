@@ -1,5 +1,8 @@
 #!/bin/sh
-ENV=$1
+STEP=$1
+ENV=$2
+
+SCRIPT_HOME=`pwd -P`
 APP_ROOT=$(cd $SCRIPT_HOME && pwd)
 APP_PATH=$APP_ROOT/src
 APP_NAME="logging-app"
@@ -43,9 +46,19 @@ docker_image_build() {
 
 test() {
   echo "#### run test code ####"
+  echo $APP_PATH
   (cd $APP_PATH && npm run test)
 }
 
+exit_if_fail() {
+  echo "Execute command: ($@)"
+  ($@)
+  RET=$?
+  if [ "$RET" -ne 0 ]; then
+    echo "Error occur during execute command ($@)"
+    exit $RET
+  fi
+}
 
 case "$STEP" in
   "docker_image_build" )
