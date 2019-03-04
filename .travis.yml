@@ -1,12 +1,35 @@
 language: node_js
 node_js:
   - "11.10"
+
 before_install:
-  - cd src
+  - cd deployment
 branches:
   only:
     - master
-script: npm run test
+
+script: ./build.sh test
+
+# before_deploy:
+  # - build -t app:latest .
+
+# deploy:
+#   provider: elasticbeanstalk
+#   zip_file: archive.zip # before_deploy에서 이미 archive로 이동한 상태(cd archive)라 현재 위치에서 archive.zip 전송
+#   skip_cleanup: true
+#   access_key_id: $AWS_ACCESS_KEY # declared in Travis repo settings
+#   secret_access_key:
+#     secure: $AWS_SECRET_KEY
+#   region: "ap-northeast-1"
+#   app: "app-beanstalk"
+#   env: "beanstalk-performance-tunning"
+#   bucket_name: "app-travis-eb"  # S3 bucket name
+#   on:
+#     branch: master
+
+# after_deploy:
+#   - echo "Elastic Beanstalk 배포 진행중입니다."
+
 notifications:
   email:
     recipients:
