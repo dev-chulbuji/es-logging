@@ -27,7 +27,7 @@ docker_image_build() {
   echo $SERVER_REGION
   echo $ENV
   echo $IAM_ID
-  
+
   LOGIN_RESULT=`aws ecr get-login --no-include-email --region ${SERVER_REGION}`
 
   ($LOGIN_RESULT)
@@ -49,7 +49,6 @@ docker_image_build() {
 
 test() {
   echo "#### run test code ####"
-  echo $APP_PATH
   (cd $APP_PATH && npm run test)
 }
 
