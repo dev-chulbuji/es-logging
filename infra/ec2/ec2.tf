@@ -13,7 +13,7 @@ data "aws_ami" "ubuntu-18_04" {
 
 module "ec2" {
   source = "github.com/dev-chulbuji/infra/terraform/modules/ec2"
-  name = "chulbujidev1"
+  name = "bastion"
   region = "ap-northeast-1"
 
   vpc_name = "chulbuji"
@@ -30,6 +30,7 @@ module "ec2" {
     "0.0.0.0/0"]
 
   tags = {
-    "TerraformManaged" = "true"
+    "TerraformManaged" = "true",
+    "Name" = "bastion"
   }
 }
