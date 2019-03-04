@@ -1,6 +1,7 @@
 #!/bin/sh
 STEP=$1
 ENV=$2
+IAM_ID=$3
 
 SCRIPT_HOME=`pwd -P`
 APP_ROOT=$(cd $SCRIPT_HOME && pwd)
@@ -19,8 +20,8 @@ esac
 }
 
 docker_image_build() {
+  echo "#### build docker image ####"
   local SERVER_REGION="$(get_server_region_by_env)"
-  local IAM_ID="657976307134"
 
   LOGIN_RESULT=`aws ecr get-login --no-include-email --region ${SERVER_REGION}`
   ($LOGIN_RESULT)
@@ -35,7 +36,7 @@ docker_image_build() {
 
   # (cd $APP_PATH; rm ./id_rsa)
   IMAGE_ID=$(docker images ${APP_NAME}:latest -q)
-  IMAGE_URL="${}.dkr.ecr.${SERVER_REGION}.amazonaws.com/${APP_NAME}"
+  IMAGE_URL="${IAM_ID}.dkr.ecr.${SERVER_REGION}.amazonaws.com/${APP_NAME}"
 
   (docker tag ${APP_NAME}:latest ${IMAGE_URL}:latest)
   (docker tag ${APP_NAME}:latest ${IMAGE_URL}:${IMAGE_ID})

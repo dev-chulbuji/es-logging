@@ -10,8 +10,8 @@ branches:
 
 script: ./deployment/build.sh test
 
-# before_deploy:
-  # - build -t app:latest .
+before_deploy:
+  - ./deployment/build.sh docker_image_build $ENV $IAM_ID
 
 # deploy:
 #   provider: elasticbeanstalk
