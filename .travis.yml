@@ -17,12 +17,16 @@ script: ./deployment/build.sh test
 
 before_deploy:
   - docker --version
+  - pip install --upgrade pip
   - pip install --user awscli
+  - export PATH=$PATH:/$HOME/.local/bin
+  - aws configure set aws_access_key_id $AWS_ACCESS_KEY
+  - aws configure set aws_secret_access_key $AWS_SECRET_KEY
   - ./deployment/build.sh docker_image_build $ENV $IAM_ID
 
 deploy:
   provider: elasticbeanstalk
-  access_key_id: $ACCESSKEYID
+  access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
     secure: $AWS_SECRET_KEY
   region: $AWS_REGION  

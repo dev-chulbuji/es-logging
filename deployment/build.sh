@@ -23,13 +23,7 @@ docker_image_build() {
   echo "#### build docker image ####"
   local SERVER_REGION="$(get_server_region_by_env)"
 
-
-  echo $SERVER_REGION
-  echo $ENV
-  echo $IAM_ID
-
   LOGIN_RESULT=`aws ecr get-login --no-include-email --region ${SERVER_REGION}`
-
   ($LOGIN_RESULT)
 
   if ! (cd $APP_PATH; docker build -t ${APP_NAME} .); then
