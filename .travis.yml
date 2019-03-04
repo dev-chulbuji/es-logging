@@ -11,6 +11,8 @@ branches:
 script: ./deployment/build.sh test
 
 before_deploy:
+  - docker --version
+  - pip install --user awscli
   - ./deployment/build.sh docker_image_build $ENV $IAM_ID
 
 deploy:
