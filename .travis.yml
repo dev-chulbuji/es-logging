@@ -19,20 +19,20 @@ before_deploy:
   - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
   - ./deployment/build.sh docker_image_build $ENV $IAM_ID
 
-deploy:
-  provider: elasticbeanstalk
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_ACCESS_KEY
-  region: $AWS_REGION  
-  app: "app-beanstalk"
-  env: "app-beanstalk-env"
-  bucket_name: "app-travis-eb"
-  on:
-    branch: master
+# deploy:
+#   provider: elasticbeanstalk
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key:
+#     secure: $AWS_SECRET_ACCESS_KEY
+#   region: $AWS_REGION  
+#   app: "app-beanstalk"
+#   env: "app-beanstalk-env"
+#   bucket_name: "app-travis-eb"
+#   on:
+#     branch: master
 
-after_deploy:
-  - echo "Elastic Beanstalk is deploying..."
+# after_deploy:
+#   - echo "Elastic Beanstalk is deploying..."
 
 notifications:
   email:
